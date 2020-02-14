@@ -6,6 +6,7 @@ nom_hp <- function(){
   library(ggplot2)
   library(x12)
   library(tis)
+  library(plotly)
   
   setwd("/href/scratch3/m1dbl01/Personal/Zillow")
   
@@ -30,17 +31,20 @@ nom_hp <- function(){
   seasadj <- x12(new("x12Single", ts = as.ts(zhvi)))
   
   zhvi_adju <- tis(as.numeric(seasadj@x12Output@d11), start = min(data$date), frequency = 12)
+  write_csv(data.frame(value=seasadj@x12Output@d11, date = data$date), "zhvi_adju.csv")
+  system("rm Rout*")
+  system("rm -r gra_Rout/")
   zhvi_norm <- window(zhvi_adju, start = jul("2007-04-04"), end = jul("2007-04-04"))[1]
   
   zhvi_plot <- data.frame(value = as.numeric(100*zhvi_adju/zhvi_norm), date = data$date)
   
   
   ggplot(zhvi_plot, aes(x = date, y = value)) +
-    geom_line() +
+    geom_line(color = "red") +
     ggtitle("Nominal Prices of Existing Homes", "Index Normalized to 2007 Peak = 100") +
     xlab("") + 
     ylab("") +
     labs(caption = "Note: Seasonally Adjusted") +
-    annotate("text", x=max(zhvi_plot$date), y=zhvi_plot$value[zhvi_plot$date==max(zhvi_plot$date)], label = enddate, hjust = 0, size=3) +
-    theme_bw() 
+    annotate("text", x=max(zhvi_plot$date)+90, y=zhvi_plot$value[zhvi_plot$date==max(zhvi_plot$date)], label = enddate, hjust = 0, size=3) +
+    theme_bw()
 }
