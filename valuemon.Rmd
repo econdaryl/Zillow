@@ -11,8 +11,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, echo=FALSE}
 source("nom_hp.R")
 source("hp_growth.R")
+source("hp_real.R")
 suppressMessages(nom_hp())
 suppressMessages(hp_growth())
+suppressMessages(hp_real())
 ```
 
 ## Including Plots

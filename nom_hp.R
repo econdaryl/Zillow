@@ -6,9 +6,6 @@ nom_hp <- function(){
   library(ggplot2)
   library(x12)
   library(tis)
-  library(plotly)
-  
-  setwd("/href/scratch3/m1dbl01/Personal/Zillow")
   
   download.file("http://files.zillowstatic.com/research/public/Metro/Metro_Zhvi_AllHomes.csv", destfile = "zhvi.csv")
   
@@ -44,6 +41,7 @@ nom_hp <- function(){
     ggtitle("Nominal Prices of Existing Homes", "Index Normalized to 2007 Peak = 100") +
     xlab("") + 
     ylab("") +
+    scale_y_continuous(position = "right") +
     labs(caption = "Note: Seasonally Adjusted") +
     annotate("text", x=max(zhvi_plot$date)+90, y=zhvi_plot$value[zhvi_plot$date==max(zhvi_plot$date)], label = enddate, hjust = 0, size=3) +
     theme_bw()
