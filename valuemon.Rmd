@@ -12,17 +12,9 @@ knitr::opts_chunk$set(echo = TRUE)
 source("nom_hp.R")
 source("hp_growth.R")
 source("hp_real.R")
+source("timeonarket.R")
 suppressMessages(nom_hp())
 suppressMessages(hp_growth())
 suppressMessages(hp_real())
+suppressMessages(timeonmarket())
 ```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
