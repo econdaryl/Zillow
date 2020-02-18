@@ -1,12 +1,4 @@
 nom_hp <- function(){
-
-  library(readr)
-  library(dplyr)
-  library(tidyr)
-  library(ggplot2)
-  library(x12)
-  library(tis)
-  
   download.file("http://files.zillowstatic.com/research/public/Metro/Metro_Zhvi_AllHomes.csv", destfile = "zhvi.csv")
   
   data <- read_csv("zhvi.csv")

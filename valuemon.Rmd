@@ -6,13 +6,18 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r, echo=FALSE}
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(tis)
+library(x12)
 source("nom_hp.R")
 source("hp_growth.R")
 source("hp_real.R")
-source("timeonarket.R")
+source("timeonmarket.R")
+```
+
+```{r, echo=FALSE}
 suppressMessages(nom_hp())
 suppressMessages(hp_growth())
 suppressMessages(hp_real())

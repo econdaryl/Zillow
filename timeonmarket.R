@@ -1,6 +1,6 @@
 timeonmarket <- function(){
   download.file("http://files.zillowstatic.com/research/public/CountyCrossWalk_Zillow.csv", "cross.csv")
-  cross <- read_csv("cross.csv")
+  cross <- suppressWarnings(read_csv("cross.csv"))
   
   cross <- cross %>%
     mutate(MetroName_Zillow = ifelse(MetroName_Zillow=="Miami, FL", "Miami-Fort Lauderdale, FL", MetroName_Zillow),
