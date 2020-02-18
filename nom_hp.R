@@ -44,5 +44,6 @@ nom_hp <- function(){
     scale_y_continuous(position = "right") +
     labs(caption = "Note: Seasonally Adjusted") +
     annotate("text", x=max(zhvi_plot$date)+90, y=zhvi_plot$value[zhvi_plot$date==max(zhvi_plot$date)], label = enddate, hjust = 0, size=3) +
-    theme_bw()
+    theme_bw() +
+    theme(plot.caption = element_text(hjust = 0))
 }

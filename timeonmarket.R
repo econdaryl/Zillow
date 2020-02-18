@@ -93,6 +93,8 @@ timeonmarket <- function(){
     annotate("text", x = as.Date("2010-07-01"), y = 130, label = "Median", size = 2, hjust = 0, color = "forestgreen") +
     xlab("") + 
     ylab("") +
+    labs(caption = "Note: Seasonally Adjusted") +
     scale_y_continuous(position = "right") +
-    theme_bw()
+    theme_bw() +
+    theme(plot.caption = element_text(hjust = 0))
 }

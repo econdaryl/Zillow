@@ -32,5 +32,6 @@ hp_real <- function(){
     scale_y_continuous(position = "right") +
     labs(caption = "Note: Seasonally Adjusted. CPI obtained from Bureau of Labor Statistics.") +
     annotate("text", x=max(data$date)+90, y=data$real[data$date==max(data$date)], label = enddate, hjust=0, size=3) +
-    theme_bw()
+    theme_bw() +
+    theme(plot.caption = element_text(hjust = 0))
 }
