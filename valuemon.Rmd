@@ -25,3 +25,8 @@ suppressMessages(hp_real())
 suppressMessages(timeonmarket())
 suppressMessages(supply())
 ```
+
+```{r, include=FALSE}
+# No need to save those CSVs
+unlink("*.csv")
+```
