@@ -1,5 +1,4 @@
 hp_growth <- function(){
-  library(plotly)
   data <- read_csv("zhvi_adju.csv") %>%
     mutate(growth = 1200*(value - lag(value))/lag(value)) %>%
     filter(year(date) >= 2011)

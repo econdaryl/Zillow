@@ -76,8 +76,8 @@ supply <- function(){
   p90_adj <- x12(new("x12Single", ts = as.ts(p90)))
   p90_adj <- tis(as.numeric(p90_adj@x12Output@d11), start = min(supply$date), frequency = 12)
   
-  system("rm Rout*")
-  system("rm -r gra_Rout/")
+  unlink("Rout*")
+  unlink("gra_Rout/*")
   
   data <- data.frame(us_adj = us_adj, pho_adj = pho_adj, mia_adj = mia_adj,
                      la_adj = la_adj, p10_adj = p10_adj, p25_adj = p25_adj,

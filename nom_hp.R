@@ -15,14 +15,14 @@ nom_hp <- function(){
   
   # set the path of the x12a binary, if this isn't done, then x12 will use the x13as binary
   # located in /opt/R/R-arc-3.4.1/library/x13binary/bin
-  x12path("/opt/x12arima/0.3/bin/x12a")
+  #x12path("/opt/x12arima/0.3/bin/x12a")
   
   seasadj <- x12(new("x12Single", ts = as.ts(zhvi)))
   
   zhvi_adju <- tis(as.numeric(seasadj@x12Output@d11), start = min(data$date), frequency = 12)
   write_csv(data.frame(value=seasadj@x12Output@d11, date = data$date), "zhvi_adju.csv")
-  system("rm Rout*")
-  system("rm -r gra_Rout/")
+  unlink("Rout*")
+  unlink("gra_Rout/*")
   zhvi_norm <- window(zhvi_adju, start = jul("2007-04-04"), end = jul("2007-04-04"))[1]
   
   zhvi_plot <- data.frame(value = as.numeric(100*zhvi_adju/zhvi_norm), date = data$date)
