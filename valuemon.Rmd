@@ -15,6 +15,7 @@ source("nom_hp.R")
 source("hp_growth.R")
 source("hp_real.R")
 source("timeonmarket.R")
+source("supply_index.R")
 ```
 
 ```{r, echo=FALSE}
@@ -22,4 +23,5 @@ suppressMessages(nom_hp())
 suppressMessages(hp_growth())
 suppressMessages(hp_real())
 suppressMessages(timeonmarket())
+suppressMessages(supply())
 ```
