@@ -37,6 +37,8 @@ timeonmarket <- function(){
     full_join(ptiles, by = "name") %>%
     mutate(date = as.Date(paste0(name, "-01")))
   
+  enddate <- month.abb[as.numeric(last(month(days$date)))]
+  
   us <- tis(days$`0`, start = min(days$date), freq = 12)
   pho <- tis(days$`38060`, start = min(days$date), freq = 12)
   mia <- tis(days$`33100`, start = min(days$date), freq = 12)
@@ -93,6 +95,7 @@ timeonmarket <- function(){
     annotate("text", x = as.Date("2010-07-01"), y = 130, label = "Median", size = 2, hjust = 0, color = "forestgreen") +
     xlab("") + 
     ylab("") +
+    annotate("text", x=max(data$date)+60, y=data$us_adj[data$date==max(data$date)], label = enddate, hjust=0, size=3) +
     labs(caption = "Note: Seasonally Adjusted") +
     scale_y_continuous(position = "right") +
     theme_bw() +

@@ -47,6 +47,8 @@ supply <- function(){
     inner_join(ptiles, by = "name") %>%
     mutate(date = as.Date(paste0(name, "-01")))
   
+  enddate <- month.abb[as.numeric(last(month(supply$date)))]
+  
   us <- tis(supply$`0`, start = min(supply$date), freq = 12)
   pho <- tis(supply$`38060`, start = min(supply$date), freq = 12)
   mia <- tis(supply$`33100`, start = min(supply$date), freq = 12)
@@ -104,6 +106,7 @@ supply <- function(){
     annotate("text", x = as.Date("2013-02-01"), y = 7.75, label = "Median", size = 2, hjust = 0, color = "forestgreen") +
     xlab("") + 
     ylab("") +
+    annotate("text", x=max(data$date)+60, y=data$us_adj[data$date==max(data$date)], label = enddate, hjust=0, size=3) +
     labs(caption = "Note: Seasonally Adjusted. Supply is homes for sale divided by homes sold.") +
     scale_y_continuous(position = "right") +
     theme_bw() +
