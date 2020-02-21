@@ -11,31 +11,16 @@ nom_hp <- function(){
   
   enddate <- month.abb[as.numeric(last(data$month))]
   
-  zhvi <- tis(data$value, start = min(data$date), frequency = 12)
+  data$norm <- data$value[data$date == as.Date("2007-04-01")]
   
-  # set the path of the x12a binary, if this isn't done, then x12 will use the x13as binary
-  # located in /opt/R/R-arc-3.4.1/library/x13binary/bin
-  #x12path("/opt/x12arima/0.3/bin/x12a")
+  data$adj <- data$value/data$norm
   
-  seasadj <- x12(new("x12Single", ts = as.ts(zhvi)))
-  
-  zhvi_adju <- tis(as.numeric(seasadj@x12Output@d11), start = min(data$date), frequency = 12)
-  write_csv(data.frame(value=seasadj@x12Output@d11, date = data$date), "zhvi_adju.csv")
-  unlink("Rout*")
-  unlink("gra_Rout/*")
-  zhvi_norm <- window(zhvi_adju, start = jul("2007-04-04"), end = jul("2007-04-04"))[1]
-  
-  zhvi_plot <- data.frame(value = as.numeric(100*zhvi_adju/zhvi_norm), date = data$date)
-  
-  
-  ggplot(zhvi_plot, aes(x = date, y = value)) +
+  ggplot(data, aes(x = date, y = adj)) +
     geom_line(color = "red") +
     ggtitle("Nominal Prices of Existing Homes", "Index Normalized to 2007 Peak = 100") +
     xlab("") + 
     ylab("") +
     scale_y_continuous(position = "right") +
-    labs(caption = "Note: Seasonally Adjusted") +
-    annotate("text", x=max(zhvi_plot$date)+90, y=zhvi_plot$value[zhvi_plot$date==max(zhvi_plot$date)], label = enddate, hjust = 0, size=3) +
-    theme_bw() +
-    theme(plot.caption = element_text(hjust = 0))
+    annotate("text", x=max(data$date)+90, y=data$adj[data$date==max(data$date)], label = enddate, hjust = 0, size=3) +
+    theme_bw()
 }
