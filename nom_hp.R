@@ -1,5 +1,5 @@
 nom_hp <- function(){
-  download.file("http://files.zillowstatic.com/research/public/Metro/Metro_Zhvi_AllHomes.csv", destfile = "zhvi.csv")
+  download.file("https://files.zillowstatic.com/research/public_csvs/zhvi/Metro_zhvi_uc_sfrcondo_tier_0.33_0.67_sm_sa_month.csv", destfile = "zhvi.csv")
   
   data <- read_csv("zhvi.csv")
   data <- data %>%

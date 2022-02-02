@@ -12,16 +12,17 @@ hp_real <- function(){
     mutate(date = as.Date(paste0(year, "-", substring(period, 2, 3), "-01"))) %>%
     filter(series_id == "CUUR0000SA0",
            period != "M13",
-           date <= max(data$date)) %>%
+           date <= max(data$date),
+           date >= min(data$date)) %>%
     select(year, period, value)
   
   data <- data %>%
-    filter(year(date) >= 1997) %>%
+    filter(year(date) >= 2000) %>%
     mutate(real = value/cpi$value)
   
   zl_norm <- data %>%
-    filter(year(date) < 2010,
-           real == max(real)) %>%
+    filter(year(date) < 2010) %>%
+    filter(real == max(real)) %>%
     select(real) %>%
     as.numeric()
   
