@@ -11,7 +11,7 @@ timeonmarket <- function(){
     summarise(n()) %>%
     select(CBSA, MetroName_Zillow)
   
-  download.file("http://files.zillowstatic.com/research/public/Metro/DaysOnZillow_Msa.csv", "daysonzillow.csv")
+  download.file("https://files.zillowstatic.com/research/public_csvs/mean_doz_pending/Metro_mean_doz_pending_uc_sfrcondo_month.csv", "daysonzillow.csv")
   daysonzillow <- read_csv("daysonzillow.csv")
   
   ptiles <- daysonzillow %>%

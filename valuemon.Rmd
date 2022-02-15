@@ -5,7 +5,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
 library(readr)
 library(tidyverse)
 library(ggplot2)
@@ -14,19 +14,21 @@ library(x12)
 source("nom_hp.R")
 source("hp_growth.R")
 source("hp_real.R")
-source("timeonmarket.R")
-source("supply_index.R")
+#source("timeonmarket.R") // They discontinued the original data. New data starts in 2018 though
+#source("supply_index.R") // same here
 ```
 
 ```{r, echo=FALSE}
 suppressMessages(nom_hp())
 suppressMessages(hp_growth())
 suppressMessages(hp_real())
-suppressMessages(timeonmarket())
-suppressMessages(supply())
+#suppressMessages(timeonmarket())
+#suppressMessages(supply())
 ```
 
 ```{r, include=FALSE}
 # No need to save those CSVs
 unlink("*.csv")
+unlink("Rout*")
+unlink("gra_Rout/", recursive = TRUE)
 ```

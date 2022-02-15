@@ -1,6 +1,6 @@
 supply <- function(){
-  download.file("http://files.zillowstatic.com/research/public/Metro/Sale_Counts_Msa.csv", "Sale_Counts_Msa.csv")
-  download.file("http://files.zillowstatic.com/research/public/Metro/MonthlyListings_NSA_AllHomes_Metro.csv", "inventory.csv")
+  download.file("https://files.zillowstatic.com/research/public_csvs/sales_count_now/Metro_sales_count_now_uc_sfrcondo_month.csv", "Sale_Counts_Msa.csv")
+  download.file("https://files.zillowstatic.com/research/public_csvs/invt_fs/Metro_invt_fs_uc_sfrcondo_month.csv", "inventory.csv")
   
   sales <- read_csv("Sale_Counts_Msa.csv")
   cross <- suppressWarnings(read_csv("cross.csv"))
